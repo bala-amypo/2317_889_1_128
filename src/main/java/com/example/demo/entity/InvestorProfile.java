@@ -29,27 +29,27 @@ public class InvestorProfile {
         this.createdAt = createdAt
     }
 
-    public void getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public Long setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void getInvestorId() {
+    public String getInvestorId() {
         return this.investorId;
     }
 
-    public String setInvestorId(String investorId) {
+    public void setInvestorId(String investorId) {
         this.investorId = investorId;
     }
 
-    public void getFullName() {
+    public String getFullName() {
         return this.fullName;
     }
 
-    public String setFullName(String fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
@@ -69,11 +69,11 @@ public class InvestorProfile {
         this.active = active;
     }
 
-    public String getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return this.createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 }
