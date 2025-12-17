@@ -1,3 +1,4 @@
+
 @Entity
 public class InvestorProfile {
     @Id
@@ -26,7 +27,7 @@ public class InvestorProfile {
         this.fullName = fullName;
         this.email = email;
         this.active = active;
-        this.createdAt = createdAt
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
