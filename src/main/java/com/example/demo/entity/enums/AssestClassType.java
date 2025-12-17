@@ -1,0 +1,3 @@
+enum AssetClassType {
+    STOCKS, BONDS, CRYPTO, REAL_ESTATE_CASH, OTHER
+}
