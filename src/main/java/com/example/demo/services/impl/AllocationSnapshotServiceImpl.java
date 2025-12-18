@@ -55,7 +55,7 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
         Map<AssetClassType, Double> allocations = new HashMap<>();
 
         for (HoldingRecord holding : holdings) {
-            AssetClassType assetClass = holding.getAssetClass();
+            AssetClassType assetClass = holding.getAssetClassType();
             double value = holding.getCurrentValue();
 
             allocations.put(
@@ -73,12 +73,12 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
         List<AssetClassAllocationRule> rules = ruleRepo.findByInvestorId(investorId);
 
         for (AssetClassAllocationRule rule : rules) {
-            double currentPercentage = percentages.getOrDefault(rule.getAssetClass(), 0.0);
+            double currentPercentage = percentages.getOrDefault(rule.getAssetClassType(), 0.0);
 
             if (currentPercentage > rule.getTargetPercentage()) {
                 RebalancingAlertRecord alert = new RebalancingAlertRecord();
                 alert.setInvestorId(investorId);
-                alert.setAssetClass(rule.getAssetClass());
+                alert.setAssetClass(rule.getAssetClassType());
                 alert.setCurrentPercentage(currentPercentage);
                 alert.setTargetPercentage(rule.getTargetPercentage());
                 alert.setResolved(false);
