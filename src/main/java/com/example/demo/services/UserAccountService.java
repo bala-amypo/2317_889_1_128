@@ -6,7 +6,7 @@ import com.example.demo.entity.UserAccount;
 public interface UserAccountService {
     Optional<UserAccount> getUserDataFromDB(Long id);
     UserAccount postUserDateToDB(UserAccount userAccount);
-    UserAccount updateUserDataInDB(Long id, UserAccount userAccount);
+    Optional<UserAccount> updateUserDataInDB(Long id, UserAccount userAccount);
     String deleteUserDataInDB(Long id);
 }
 

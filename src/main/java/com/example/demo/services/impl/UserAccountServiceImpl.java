@@ -29,10 +29,10 @@ public class UserAccountServiceImpl implements UserAccountService {
     }    
 
     @Override
-    public UserAccount updateUserDataInDB(Long id, UserAccount userAccount) {
+    public Optional<UserAccount> updateUserDataInDB(Long id, UserAccount userAccount) {
         userAccountRepository.deleteById(id);
         userAccountRepository.save(userAccount);
-        return userAccount;
+        return userAccountRepository.findById(id);
     }
 
     @Override
