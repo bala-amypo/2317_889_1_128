@@ -1,12 +1,12 @@
-package co.example.demo.services.impl;
+package com.example.demo.services.impl;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-import co.example.demo.entity.HoldingRecord;
-import co.example.demo.repository.HoldingRecordRepository;
-import co.example.demo.services.HoldingRecordService;
+import com.example.demo.entity.HoldingRecord;
+import com.example.demo.repository.HoldingRecordRepository;
+import com.example.demo.services.HoldingRecordService;
 
 @Service
 public class HoldingRecordServiceImpl implements HoldingRecordService {
