@@ -44,4 +44,9 @@ public class AllocationRuleServiceImpl implements AllocationRuleService {
     public Optional<AssetClassAllocationRule> getRuleById(Long id) {
         return assetClassAllocationRepository.findById(id);
     }
+
+    @Override
+    public List<AssetClassAllocationRule> getAllRule() {
+        return assetClassAllocationRuleRepository.findAll();
+    }
 }
