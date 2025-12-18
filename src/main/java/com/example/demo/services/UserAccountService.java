@@ -4,6 +4,9 @@ import java.util.Optional;
 import com.example.demo.entity.UserAccount;
 
 public interface UserAccountService {
-    UserAccount getUserDataFromDB(Long id);
+    Optional<UserAccount> getUserDataFromDB(Long id);
     UserAccount postUserDateToDB(UserAccount userAccount);
+    UserAccount updateUserDataInDB(Long id, UserAccount userAccount);
+    String deleteUserDataInDB(Long id);
 }
+
