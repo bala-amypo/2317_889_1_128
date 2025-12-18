@@ -10,12 +10,12 @@ public class HoldingRecord {
     @Id
     private Long id;
     private Long investorId;
-    private AssestClassType assestClass;
+    private AssetClassType assetClass;
     private Double currentValue;
     private LocalDateTime snapShotDate;
 
-    public HoldingRecord(AssestClassType assestClass, Double currentValue, Long id, Long investorId, LocalDateTime snapShotDate) {
-        this.assestClass = assestClass;
+    public HoldingRecord(AssetClassType assetClass, Double currentValue, Long id, Long investorId, LocalDateTime snapShotDate) {
+        this.assetClass = assetClass;
         this.currentValue = currentValue;
         this.id = id;
         this.investorId = investorId;
@@ -38,12 +38,12 @@ public class HoldingRecord {
         this.investorId = investorId;
     }
 
-    public AssestClassType getAssestClassType() {
-        return assestClass;
+    public AssetClassType getAssetClassType() {
+        return assetClass;
     }
 
-    public void setAssestClassType(AssestClassType assestClass) {
-        this.assestClass = assestClass;
+    public void setAssetClassType(AssetClassType assetClass) {
+        this.assetClass = assetClass;
     }
 
     public Double getCurrentValue() {
