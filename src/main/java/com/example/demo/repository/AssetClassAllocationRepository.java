@@ -9,6 +9,6 @@ import com.example.demo.entity.AssetClassAllocationRule;
 
 public interface AssetClassAllocationRepository extends JpaRepository<AssetClassAllocationRule, Long> {
     List<AssetClassAllocationRule> findByInvestorId(Long investorId);
-    // @Query
+    @Query
     List<AssetClassAllocationRule> findActiveRulesHql(Long investorId);
 }
