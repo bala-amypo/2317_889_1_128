@@ -18,13 +18,15 @@ public class UserAccountServiceImpl implements UserAccountService {
     
     @Override
     public Optional<UserAccount> getUserDataFromDB(Long id) {
-        records.;
+        return records.get(id);
         // return userAccountRepository.findById(id);
     }
 
     @Override
     public UserAccount postUserDateToDB(UserAccount userAccount) {
-        return userAccountRepository.save(userAccount);
+        records.put(userAccount.getId(), userAccount);
+        return userAccount;
+        // return userAccountRepository.save(userAccount);
     }
     
 }
