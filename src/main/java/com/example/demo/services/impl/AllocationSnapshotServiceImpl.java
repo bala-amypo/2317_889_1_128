@@ -1,20 +1,20 @@
-package com.example..services.impl;
+package com.example.demo.services.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-import com.example..entity.AllocationSnapshotRecord;
-import com.example..entity.AssetClassAllocationRule;
-import com.example..entity.HoldingRecord;
-import com.example..entity.RebalancingAlertRecord;
-import com.example..entity.enums.AssetClassType;
-import com.example..repository.AllocationSnapshotRecordRepository;
-import com.example..repository.AssetClassAllocationRuleRepository;
-import com.example..repository.HoldingRecordRepository;
-import com.example..repository.RebalancingAlertRecordRepository;
-import com.example..services.AllocationSnapshotService;
+import com.example.demo.entity.AllocationSnapshotRecord;
+import com.example.demo.entity.AssetClassAllocationRule;
+import com.example.demo.entity.HoldingRecord;
+import com.example.demo.entity.RebalancingAlertRecord;
+import com.example.demo.entity.enums.AssetClassType;
+import com.example.demo.repository.AllocationSnapshotRecordRepository;
+import com.example.demo.repository.AssetClassAllocationRuleRepository;
+import com.example.demo.repository.HoldingRecordRepository;
+import com.example.demo.repository.RebalancingAlertRecordRepository;
+import com.example.demo.services.AllocationSnapshotService;
 
 @Service
 @Transactional
