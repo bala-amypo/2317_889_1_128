@@ -5,13 +5,14 @@ import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import com.example.demo.entity.enums.AlertSeverity;
+import com.example.demo.entity.enums.AssetClassType;
 
 @Entity
 public class RebalancingAlertRecord {
     @Id
     private Long id;
     private Long investorId;
-    private AssestClassType assestClass;
+    private AssetClassType assetClass;
     private Double currentPercentage;
     private Double targetPercentage;
     private AlertSeverity severity;
@@ -19,9 +20,9 @@ public class RebalancingAlertRecord {
     private LocalDateTime alertDate;
     private Boolean resolved = false;
 
-    public RebalancingAlertRecord(LocalDateTime alertDate, AssestClassType assestClass, Double currentPercentage, Long id, Long investorId, String message, Boolean resolved, AlertSeverity severity, Double targetPercentage) {
+    public RebalancingAlertRecord(LocalDateTime alertDate, AssetClassType assetClass, Double currentPercentage, Long id, Long investorId, String message, Boolean resolved, AlertSeverity severity, Double targetPercentage) {
         this.alertDate = alertDate;
-        this.assestClass = assestClass;
+        this.assetClass = assetClass;
         this.currentPercentage = currentPercentage;
         this.id = id;
         this.investorId = investorId;
@@ -47,12 +48,12 @@ public class RebalancingAlertRecord {
         this.investorId = investorId;
     }
 
-    public AssestClassType getAssestClass() {
-        return assestClass;
+    public AssetClassType getAssetClass() {
+        return assetClass;
     }
 
-    public void setAssestClass(AssestClassType assestClass) {
-        this.assestClass = assestClass;
+    public void setAssetClass(AssetClassType assetClass) {
+        this.assetClass = assetClass;
     }
 
     public Double getCurrentPercentage() {

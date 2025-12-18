@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import com.example.demo.entity.enums.AssetClassType;
+
 @Entity
 public class HoldingRecord {
     @Id
