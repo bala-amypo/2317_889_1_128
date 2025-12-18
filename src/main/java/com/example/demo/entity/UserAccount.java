@@ -19,6 +19,8 @@ public class UserAccount {
     private RoleType role;
     private Boolean active;
 
+    public UserAccount
+
     public UserAccount(Boolean active, String email, Long id, String password, RoleType role, String userName) {
         this.active = active;
         this.email = email;
