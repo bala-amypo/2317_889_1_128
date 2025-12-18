@@ -17,20 +17,18 @@ public class UserAccountServiceImpl implements UserAccountService {
     public UserAccountServiceImpl(UserAccountRepository userAccountRepository) {
         this.userAccountRepository = userAccountRepository;
     }
-
-    Map<Long, UserAccount> records = new HashMap<>();
     
     @Override
     public UserAccount getUserDataFromDB(Long id) {
-        return records.get(id);
-        // return userAccountRepository.findById(id);
+        // return records.get(id);
+        return userAccountRepository.findById(id);
     }
 
     @Override
     public UserAccount postUserDateToDB(UserAccount userAccount) {
         records.put(userAccount.getId(), userAccount);
-        return userAccount;
-        // return userAccountRepository.save(userAccount);
+        // return userAccount;
+        return userAccountRepository.save(userAccount);
     }
     
 }
