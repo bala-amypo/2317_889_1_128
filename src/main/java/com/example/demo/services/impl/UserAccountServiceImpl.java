@@ -17,7 +17,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     Map<Long, UserAccount> records = new HashMap<>();
     
     @Override
-    public Optional<UserAccount> getUserDataFromDB(Long id) {
+    public UserAccount getUserDataFromDB(Long id) {
         return records.get(id);
         // return userAccountRepository.findById(id);
     }

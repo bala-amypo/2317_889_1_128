@@ -5,6 +5,6 @@ import java.util.Optional;
 import com.example.demo.entity.UserAccount;
 
 public interface UserAccountService {
-    Optional<UserAccount> getUserDataFromDB(Long id);
+    UserAccount getUserDataFromDB(Long id);
     UserAccount postUserDateToDB(UserAccount userAccount);
 }
