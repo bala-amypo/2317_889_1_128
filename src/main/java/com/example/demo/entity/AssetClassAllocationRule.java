@@ -12,15 +12,15 @@ public class AssetClassAllocationRule {
     @Id
     private Long id;
     private Long investorId;
-    private AssetClassType assestClass;
+    private AssetClassType assetClass;
     @Min(0)
     @Max(100)
     private Double targetPercentage;
     private Boolean active;
 
-    public AssetClassAllocationRule(Boolean active, AssetClassType assestClass, Long id, Long investorId, Double targetPercentage) {
+    public AssetClassAllocationRule(Boolean active, AssetClassType assetClass, Long id, Long investorId, Double targetPercentage) {
         this.active = active;
-        this.assestClass = assestClass;
+        this.assetClass = assetClass;
         this.id = id;
         this.investorId = investorId;
         this.targetPercentage = targetPercentage;
@@ -43,11 +43,11 @@ public class AssetClassAllocationRule {
     }
 
     public AssetClassType getAssetClassType() {
-        return assestClass;
+        return assetClass;
     }
 
-    public void setAssestClass(AssetClassType assestClass) {
-        this.assestClass = assestClass;
+    public void setAssetClass(AssetClassType assetClass) {
+        this.assetClass = assetClass;
     }
 
     public Double getTargetPercentage() {

@@ -20,6 +20,9 @@ public class RebalancingAlertRecord {
     private LocalDateTime alertDate;
     private Boolean resolved = false;
 
+    public RebalancingAlertRecord() {
+    }
+
     public RebalancingAlertRecord(LocalDateTime alertDate, AssetClassType assetClass, Double currentPercentage, Long id, Long investorId, String message, Boolean resolved, AlertSeverity severity, Double targetPercentage) {
         this.alertDate = alertDate;
         this.assetClass = assetClass;

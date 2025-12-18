@@ -16,6 +16,9 @@ public class AllocationSnapshotRecord {
     private double totalPortfolioValue;
     private String allocationString;
 
+    public AllocationSnapshotRecord() {
+    }
+
     public AllocationSnapshotRecord(String allocationString, Long id, Long investorId, LocalDateTime snapShotDate, double totalPortfolioValue) {
         this.allocationString = allocationString;
         this.id = id;
