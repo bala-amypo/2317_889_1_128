@@ -19,16 +19,25 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
     
     @Override
-    public UserAccount getUserDataFromDB(Long id) {
-        // return records.get(id);
+    public Optional<UserAccount> getUserDataFromDB(Long id) {
         return userAccountRepository.findById(id);
     }
 
     @Override
     public UserAccount postUserDateToDB(UserAccount userAccount) {
-        records.put(userAccount.getId(), userAccount);
-        // return userAccount;
         return userAccountRepository.save(userAccount);
+    }    
+
+    @Override
+    public UserAccount updateUserDataInDB(Long id, UserAccount userAccount) {
+        userAccountRepository.deleteById(id);
+        userAccountRepository.save(userAccount);
+        return userAccount;
     }
-    
+
+    @Override
+    public String deleteUserDataInDB(Long id) {
+        userAccountRepository.deleteById(id);
+        return "Deleted Successfully";
+    }
 }
