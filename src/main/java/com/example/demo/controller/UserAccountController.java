@@ -25,7 +25,7 @@ public class UserAccountController {
     }
 
     @GetMapping("/getUserAccountData")
-    public UserAccount getUserData(@PathVariable Long id) {
+    public UserAccount getUserData(Long id) {
         return userAccountService.getUserDataFromDB(id);
     }
     
