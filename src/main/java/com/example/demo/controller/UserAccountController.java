@@ -25,8 +25,17 @@ public class UserAccountController {
     }
 
     @GetMapping("/getUserAccountData")
-    public UserAccount getUserData(Long id) {
+    public Optional<UserAccount> getUserData(@PathVariable Long id) {
         return userAccountService.getUserDataFromDB(id);
     }
-    
+
+    @PutMapping("/updateData/{id}")
+    public Optional<UserAccount> updateUserData(@PathVariable Long id, @RequestBody UserAccount userAccount) {
+        return userAccountService.updateUserDataInDB(id, userAccount);
+    }
+
+    @DeleteMapping("/deleteUserAccountData/{id}")
+    public String deleteUserData(@PathVariable Long id) {
+        return userAccountService.deleteUserDataInDB(id);
+    }
 }
