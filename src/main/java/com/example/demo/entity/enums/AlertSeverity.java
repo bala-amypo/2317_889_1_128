@@ -1,6 +1,6 @@
 package com.example.demo.entity.enums;
 
-enum AlertSeverity {
+public enum AlertSeverity {
     LOW,
     MEDIUM,
     HIGH

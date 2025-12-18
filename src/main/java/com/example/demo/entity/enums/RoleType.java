@@ -1,6 +1,6 @@
 package com.example.demo.entity.enums;
 
-enum RoleType {
+public enum RoleType {
     INVESTOR,
     ANALYST,
     ADMIN
