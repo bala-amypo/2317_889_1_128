@@ -3,14 +3,18 @@ package com.example.demo.services.impl;
 import java.util.Optional;
 import java.util.*;
 
+
+import org.springframework.stereotype.Service;
+
 import com.example.demo.entity.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.services.UserAccountService;
 
+@Service
 public class UserAccountServiceImpl implements UserAccountService {
     private final UserAccountRepository userAccountRepository;
 
-    UserAccountServiceImpl(UserAccountRepository userAccountRepository) {
+    public UserAccountServiceImpl(UserAccountRepository userAccountRepository) {
         this.userAccountRepository = userAccountRepository;
     }
 
