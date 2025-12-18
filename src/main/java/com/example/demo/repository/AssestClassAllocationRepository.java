@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.entity.AssetClassAllocationRule;
 
-public interface AssetClassAllocationRuleRepository extends JpaRepository<AssetClassAllocationRule, Long> {
+public interface AssetClassAllocationRepository extends JpaRepository<AssetClassAllocationRule, Long> {
     List<AssetClassAllocationRule> findByInvestorId(Long investorId);
     @Query
     List<AssetClassAllocationRule> findActiveRulesHql(Long investorId);

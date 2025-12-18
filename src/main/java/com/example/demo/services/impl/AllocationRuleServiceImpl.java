@@ -11,9 +11,9 @@ import com.example.demo.services.AllocationRuleService;
 
 @Service
 public class AllocationRuleServiceImpl implements AllocationRuleService {
-    private final AssetClassAllocationRuleRepository assetClassAllocationRuleRepository;
+    private final AssetClassAllocationRepository assetClassAllocationRuleRepository;
 
-    public AllocationRuleServiceImpl(AssetClassAllocationRuleRepository assetClassAllocationRuleRepository) {
+    public AllocationRuleServiceImpl(AssetClassAllocationRepository assetClassAllocationRuleRepository) {
         this.assetClassAllocationRuleRepository = assetClassAllocationRuleRepository;
     }
 
