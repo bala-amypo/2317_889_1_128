@@ -27,7 +27,7 @@ public class UserAccountController {
         return userAccountService.postUserDateToDB(userAccount);
     }
 
-    @GetMapping("/getUserAccountData")
+    @GetMapping("/getUserAccountData/{id}")
     public Optional<UserAccount> getUserData(@PathVariable Long id) {
         return userAccountService.getUserDataFromDB(id);
     }

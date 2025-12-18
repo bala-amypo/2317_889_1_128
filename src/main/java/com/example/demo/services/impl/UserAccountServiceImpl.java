@@ -25,13 +25,13 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public UserAccount postUserDateToDB(UserAccount userAccount) {
-        return userAccountRepository.save(userAccount);
+        return userAccountRepository.saveAndFlush(userAccount);
     }    
 
     @Override
     public Optional<UserAccount> updateUserDataInDB(Long id, UserAccount userAccount) {
         userAccountRepository.deleteById(id);
-        userAccountRepository.save(userAccount);
+        userAccountRepository.saveAndFlush(userAccount);
         return userAccountRepository.findById(id);
     }
 
