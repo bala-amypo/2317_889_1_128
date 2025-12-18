@@ -5,6 +5,8 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
+import com.example.demo.entity.enums.AssetClassType;
+
 @Entity
 public class AssetClassAllocationRule {
     @Id
