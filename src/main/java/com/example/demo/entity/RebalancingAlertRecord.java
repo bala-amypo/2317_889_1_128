@@ -4,12 +4,15 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import com.example.demo.entity.enums.AlertSeverity;
 import com.example.demo.entity.enums.AssetClassType;
 
 @Entity
 public class RebalancingAlertRecord {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Long investorId;
     private AssetClassType assetClass;
