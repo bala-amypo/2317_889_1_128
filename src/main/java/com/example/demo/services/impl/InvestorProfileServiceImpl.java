@@ -1,11 +1,11 @@
 package com.example.demo.services.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.InvestorProfile;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.InvestorProfileRepository;
 import com.example.demo.services.InvestorProfileService;
 
@@ -24,16 +24,15 @@ public class InvestorProfileServiceImpl implements InvestorProfileService {
     }
 
     @Override
-    public Optional<InvestorProfile> getInvestorById(Long id) {
-        if (investorProfileRepository.findById(id) == null) {
-            throw null;
-        }
-        return investorProfileRepository.findById(id);
+    public InvestorProfile getInvestorById(Long id) {
+        return investorProfileRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("not found"));
     }
 
     @Override
-    public Optional<InvestorProfile> findInvestorById(String investorId) {
-        return investorProfileRepository.findByInvestorId(investorId);
+    public InvestorProfile findInvestorById(String investorId) {
+        return investorProfileRepository.findByInvestorId(investorId).orElseThrow(
+                () -> new ResourceNotFoundException("not found"));
     }
 
     @Override
@@ -42,10 +41,11 @@ public class InvestorProfileServiceImpl implements InvestorProfileService {
     }
 
     @Override
-    public Optional<InvestorProfile> updateInvestorStatus(Long id, boolean active) {
+    public InvestorProfile updateInvestorStatus(Long id, boolean active) {
         if (active) {
-            return investorProfileRepository.findById(id);
+            return investorProfileRepository.findById(id).orElseThrow(
+                    () -> new ResourceNotFoundException("not found"));
         }
-        return null;
+        throw new ResourceNotFoundException("not found");
     }
 }

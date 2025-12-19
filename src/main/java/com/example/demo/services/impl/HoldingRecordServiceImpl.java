@@ -1,12 +1,14 @@
 package com.example.demo.services.impl;
 
-import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.HoldingRecord;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.HoldingRecordRepository;
 import com.example.demo.services.HoldingRecordService;
+
 
 @Service
 public class HoldingRecordServiceImpl implements HoldingRecordService {
@@ -19,6 +21,9 @@ public class HoldingRecordServiceImpl implements HoldingRecordService {
 
     @Override
     public HoldingRecord recordHolding(HoldingRecord holding) {
+        if (holding.getCurrentValue() <= 0) {
+            throw new IllegalArgumentException("must be > 0");
+        }
         return holdingRepo.save(holding);
     }
 
@@ -28,8 +33,10 @@ public class HoldingRecordServiceImpl implements HoldingRecordService {
     }
 
     @Override
-    public Optional<HoldingRecord> getHoldingById(Long id) {
-        return holdingRepo.findById(id);
+    public HoldingRecord getHoldingById(Long id) {
+        return holdingRepo.findById(id).orElseThrow(
+            () -> new ResourceNotFoundException("not found")
+        );
     }
 
     @Override

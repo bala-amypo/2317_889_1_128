@@ -1,7 +1,6 @@
 package com.example.demo.services.impl;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -10,6 +9,7 @@ import com.example.demo.entity.AssetClassAllocationRule;
 import com.example.demo.entity.HoldingRecord;
 import com.example.demo.entity.RebalancingAlertRecord;
 import com.example.demo.entity.enums.AssetClassType;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.AllocationSnapshotRecordRepository;
 import com.example.demo.repository.AssetClassAllocationRepository;
 import com.example.demo.repository.HoldingRecordRepository;
@@ -17,7 +17,6 @@ import com.example.demo.repository.RebalancingAlertRecordRepository;
 import com.example.demo.services.AllocationSnapshotService;
 
 @Service
-@Transactional
 public class AllocationSnapshotServiceImpl implements AllocationSnapshotService {
 
     private final AllocationSnapshotRecordRepository snapshotRepo;
@@ -40,7 +39,7 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
     public AllocationSnapshotRecord computeSnapshot(Long investorId) {
         List<HoldingRecord> holdings = holdingRepo.findByInvestorId(investorId);
         if (holdings.isEmpty()) {
-            throw null;
+            throw new ResourceNotFoundException("No holdings");
         }
 
         double totalPortfolioValue = 0;
@@ -49,7 +48,7 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
         }
 
         if (totalPortfolioValue <= 0) {
-            throw null;
+            throw new IllegalArgumentException("must be > 0");
         }
 
         Map<AssetClassType, Double> allocations = new HashMap<>();
@@ -77,7 +76,6 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
 
             if (currentPercentage > rule.getTargetPercentage()) {
                 RebalancingAlertRecord alert = new RebalancingAlertRecord();
-                // alert.setId(investorId);
                 alert.setInvestorId(investorId);
                 alert.setAssetClass(rule.getAssetClassType());
                 alert.setCurrentPercentage(currentPercentage);
@@ -91,17 +89,20 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
         AllocationSnapshotRecord snapshot = new AllocationSnapshotRecord();
         snapshot.setInvestorId(investorId);
         snapshot.setTotalPortfolioValue(totalPortfolioValue);
-        snapshot.setAllocationString(percentages.toString()); 
+        snapshot.setAllocationString(percentages.toString());
         return snapshotRepo.save(snapshot);
     }
 
     @Override
-    public Optional<AllocationSnapshotRecord> getSnapshotById(Long id) {
-        return snapshotRepo.findById(id);    }
+    public AllocationSnapshotRecord getSnapshotById(Long id) {
+        return snapshotRepo.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("not found"));
+    }
 
     @Override
-    public Optional<AllocationSnapshotRecord> getSnapshotsByInvestor(Long investorId) {
-        return snapshotRepo.findById(investorId);
+    public AllocationSnapshotRecord getSnapshotsByInvestor(Long investorId) {
+        return snapshotRepo.findById(investorId).orElseThrow(
+                () -> new ResourceNotFoundException("not found"));
     }
 
     @Override
