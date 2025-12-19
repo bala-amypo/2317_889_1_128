@@ -8,7 +8,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import com.example.demo.entity.UserAccount;
 
-@Component
 public class JwtUtil {
 
     private final String secret;
