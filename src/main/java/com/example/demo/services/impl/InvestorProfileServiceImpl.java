@@ -31,8 +31,7 @@ public class InvestorProfileServiceImpl implements InvestorProfileService {
 
     @Override
     public InvestorProfile findInvestorById(String investorId) {
-        return investorProfileRepository.findByInvestorId(investorId).orElseThrow(
-                () -> new ResourceNotFoundException("not found"));
+        return investorProfileRepository.findByInvestorId(investorId);
     }
 
     @Override
