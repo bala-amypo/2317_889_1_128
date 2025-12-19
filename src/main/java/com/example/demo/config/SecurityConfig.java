@@ -17,11 +17,12 @@ import com.example.demo.security.JwtUtil;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final JwtUtil jwtUtil;
+    // private final JwtUtil jwtUtil;
     private final JwtAuthenticationFilter jwtFilter;
 
     public SecurityConfig(JwtAuthenticationFilter jwtFilter) {
         this.jwtFilter = jwtFilter;
+        // this.jwtUtil = jwtUtil;
     }
 
     @Bean
