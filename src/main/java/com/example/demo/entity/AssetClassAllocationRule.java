@@ -13,8 +13,6 @@ public class AssetClassAllocationRule {
     private Long id;
     private Long investorId;
     private AssetClassType assetClass;
-    @Min(0)
-    @Max(100)
     private Double targetPercentage;
     private Boolean active;
 
