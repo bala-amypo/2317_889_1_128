@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.Positive;
 
 @Entity
 public class AllocationSnapshotRecord {
@@ -15,7 +14,6 @@ public class AllocationSnapshotRecord {
     private Long id;
     private Long investorId;
     private LocalDateTime snapShotDate;
-    @Positive
     private double totalPortfolioValue;
     private String allocationString;
 
