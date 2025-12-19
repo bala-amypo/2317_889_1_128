@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +30,7 @@ public class AllocationRuleController {
     }
 
     @PutMapping("/{id}")
-    public Optional<AssetClassAllocationRule> updateRule(
+    public AssetClassAllocationRule updateRule(
             @PathVariable Long id,
             @RequestBody AssetClassAllocationRule rule) {
         return ruleService.updateRule(id, rule);
@@ -44,7 +43,7 @@ public class AllocationRuleController {
     }
 
     @GetMapping("/{id}")
-    public Optional<AssetClassAllocationRule> getRuleById(@PathVariable Long id) {
+    public AssetClassAllocationRule getRuleById(@PathVariable Long id) {
         return ruleService.getRuleById(id);
     }
 

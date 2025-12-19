@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +43,7 @@ public class RebalancingAlertController {
     }
 
     @GetMapping("/{id}")
-    public Optional<RebalancingAlertRecord> getAlertById(
+    public RebalancingAlertRecord getAlertById(
             @PathVariable Long id) {
         return alertService.getAlertById(id);
     }

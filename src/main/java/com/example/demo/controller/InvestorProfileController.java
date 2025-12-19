@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.demo.entity.InvestorProfile;
 import com.example.demo.services.InvestorProfileService;
 
-import java.util.Optional;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,7 +31,7 @@ public class InvestorProfileController {
     }
 
     @GetMapping("/{id}")
-    public Optional<InvestorProfile> getInvestorProfile(@PathVariable Long id) {
+    public InvestorProfile getInvestorProfile(@PathVariable Long id) {
         return investorProfileService.getInvestorById(id);
     }
     
@@ -43,12 +41,12 @@ public class InvestorProfileController {
     }
 
     @PutMapping("/{id}/status")
-    public Optional<InvestorProfile> putInvestorProfile(@PathVariable Long id, @RequestParam boolean active) {
+    public InvestorProfile putInvestorProfile(@PathVariable Long id, @RequestParam boolean active) {
         return investorProfileService.updateInvestorStatus(id, active);
     }
 
     @GetMapping("/lookup/{investorId}")
-    public Optional<InvestorProfile> getMethodName(@PathVariable String investorId) {
+    public InvestorProfile getMethodName(@PathVariable String investorId) {
         return investorProfileService.findInvestorById(investorId);
     }    
 }

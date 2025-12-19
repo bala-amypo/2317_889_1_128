@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +35,7 @@ public class HoldingRecordController {
     }
 
     @GetMapping("/{id}")
-    public Optional<HoldingRecord> getHoldingById(@PathVariable Long id) {
+    public HoldingRecord getHoldingById(@PathVariable Long id) {
         return holdingService.getHoldingById(id);
     }
 

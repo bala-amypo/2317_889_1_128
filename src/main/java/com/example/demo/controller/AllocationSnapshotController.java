@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,13 +29,13 @@ public class AllocationSnapshotController {
     }
 
     @GetMapping("/investor/{investorId}")
-    public Optional<AllocationSnapshotRecord> getSnapshotsByInvestor(
+    public AllocationSnapshotRecord getSnapshotsByInvestor(
             @PathVariable Long investorId) {
         return snapshotService.getSnapshotsByInvestor(investorId);
     }
 
     @GetMapping("/{id}")
-    public Optional<AllocationSnapshotRecord> getSnapshotById(
+    public AllocationSnapshotRecord getSnapshotById(
             @PathVariable Long id) {
         return snapshotService.getSnapshotById(id);
     }
