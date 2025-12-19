@@ -12,6 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.example.demo.security.JwtAuthenticationFilter;
 import com.example.demo.security.JwtUtil;
+import com.example.demo.security.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -63,7 +64,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/**").authenticated()
             )
             .addFilterBefore(
-                jwtFilter,
+                jwtAuthenticationFilter,
                 UsernamePasswordAuthenticationFilter.class
             );
 
