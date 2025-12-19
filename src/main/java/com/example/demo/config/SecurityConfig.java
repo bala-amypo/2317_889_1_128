@@ -18,12 +18,12 @@ import com.example.demo.security.JwtUtil;
 public class SecurityConfig {
 
     // private final JwtUtil jwtUtil;
-    private final JwtAuthenticationFilter jwtFilter;
+    // private final JwtAuthenticationFilter jwtFilter;
 
-    public SecurityConfig(JwtAuthenticationFilter jwtFilter) {
-        this.jwtFilter = jwtFilter;
+    // public SecurityConfig(JwtAuthenticationFilter jwtFilter) {
+    //     this.jwtFilter = jwtFilter;
         // this.jwtUtil = jwtUtil;
-    }
+    // }
 
     @Bean
     public JwtUtil jwtUtil() {
@@ -31,6 +31,13 @@ public class SecurityConfig {
                 "my-secret-key", 
                 3600000
         );
+    }
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter(
+            JwtUtil jwtUtil,
+            CustomUserDetailsService userDetailsService) {
+        return new JwtAuthenticationFilter(jwtUtil, userDetailsService);
     }
 
     @Bean
