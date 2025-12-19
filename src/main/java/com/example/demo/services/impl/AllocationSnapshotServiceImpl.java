@@ -77,6 +77,7 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
 
             if (currentPercentage > rule.getTargetPercentage()) {
                 RebalancingAlertRecord alert = new RebalancingAlertRecord();
+                alert.setId(investorId);
                 alert.setInvestorId(investorId);
                 alert.setAssetClass(rule.getAssetClassType());
                 alert.setCurrentPercentage(currentPercentage);
