@@ -16,6 +16,9 @@ public class HoldingRecord {
     private Double currentValue;
     private LocalDateTime snapShotDate;
 
+    public HoldingRecord() {
+    }
+
     public HoldingRecord(AssetClassType assetClass, Double currentValue, Long id, Long investorId, LocalDateTime snapShotDate) {
         this.assetClass = assetClass;
         this.currentValue = currentValue;
