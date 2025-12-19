@@ -1,11 +1,11 @@
 package com.example.demo.services.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.example.demo.entity.RebalancingAlertRecord;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.RebalancingAlertRecordRepository;
 import com.example.demo.services.RebalancingAlertService;
 
@@ -21,7 +21,7 @@ public class RebalancingAlertServiceImpl implements RebalancingAlertService {
     @Override
     public RebalancingAlertRecord createAlert(RebalancingAlertRecord alert) {
         if (alert.getCurrentPercentage() <= alert.getTargetPercentage()) {
-            throw null;
+            throw new IllegalArgumentException("between 0 and 100");
         }
         alert.setResolved(false);
         return alertRepo.save(alert);
@@ -29,7 +29,8 @@ public class RebalancingAlertServiceImpl implements RebalancingAlertService {
 
     @Override
     public RebalancingAlertRecord resolveAlert(Long id) {
-        RebalancingAlertRecord alert = alertRepo.findById(id).orElseThrow();
+        RebalancingAlertRecord alert = alertRepo.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("not found"));
         alert.setResolved(true);
         return alertRepo.save(alert);
     }
@@ -40,8 +41,9 @@ public class RebalancingAlertServiceImpl implements RebalancingAlertService {
     }
 
     @Override
-    public Optional<RebalancingAlertRecord> getAlertById(Long id) {
-        return alertRepo.findById(id);
+    public RebalancingAlertRecord getAlertById(Long id) {
+        return alertRepo.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("not found"));
     }
 
     @Override
