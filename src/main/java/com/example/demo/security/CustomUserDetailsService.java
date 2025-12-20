@@ -14,24 +14,24 @@ import com.example.demo.repository.UserAccountRepository;
 public class CustomUserDetailsService
         implements UserDetailsService {
 
-    private final UserAccountRepository repo;
+    // private final UserAccountRepository repo;
 
-    public CustomUserDetailsService(UserAccountRepository repo) {
-        this.repo = repo;
-    }
+    // public CustomUserDetailsService(UserAccountRepository repo) {
+    //     this.repo = repo;
+    // }
 
-    @Override
-    public UserDetails loadUserByUsername(String email)
-            throws UsernameNotFoundException {
+    // @Override
+    // public UserDetails loadUserByUsername(String email)
+    //         throws UsernameNotFoundException {
 
-        UserAccount user = repo.findByEmail(email)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException("User not found"));
+    //     UserAccount user = repo.findByEmail(email)
+    //             .orElseThrow(() ->
+    //                     new UsernameNotFoundException("User not found"));
 
-        return User.builder()
-                .username(user.getEmail())
-                .password(user.getPassword())
-                .roles(user.getRole().name())
-                .build();
-    }
+    //     return User.builder()
+    //             .username(user.getEmail())
+    //             .password(user.getPassword())
+    //             .roles(user.getRole().name())
+    //             .build();
+    // }
 }
