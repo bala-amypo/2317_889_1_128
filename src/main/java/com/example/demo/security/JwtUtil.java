@@ -8,13 +8,13 @@ import com.example.demo.entity.UserAccount;
 
 public class JwtUtil {
 
-    private final String secret;
-    private final long validityInMs;
+    // private final String secret;
+    // private final long validityInMs;
 
-    public JwtUtil(String secret, long validityInMs) {
-        this.secret = secret;
-        this.validityInMs = validityInMs;
-    }
+    // public JwtUtil(String secret, long validityInMs) {
+    //     this.secret = secret;
+    //     this.validityInMs = validityInMs;
+    // }
 
     // public String generateToken(UserAccount user) {
     //     Date now = new Date();

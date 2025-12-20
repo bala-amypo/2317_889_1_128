@@ -11,8 +11,8 @@ import com.example.demo.repository.UserAccountRepository;
 
 
 @Service
-public class CustomUserDetailsService
-        implements UserDetailsService {
+public class CustomUserDetailsService {
+        // implements UserDetailsService {
 
     // private final UserAccountRepository repo;
 
