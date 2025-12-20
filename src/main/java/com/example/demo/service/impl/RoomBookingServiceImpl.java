@@ -1,3 +1,3 @@
 package com.example.demo.service.impl;
 
-public class AccessLogServiceImpl {}
+public class RoomBookingServiceImpl {}
