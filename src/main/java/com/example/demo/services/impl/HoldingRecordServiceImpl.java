@@ -24,7 +24,8 @@ public class HoldingRecordServiceImpl implements HoldingRecordService {
         if (holding.getCurrentValue() <= 0) {
             throw new IllegalArgumentException("must be > 0");
         }
-        return holdingRepo.save(holding);
+        holdingRepo.save(holding);
+        return holding;
     }
 
     @Override
