@@ -69,9 +69,9 @@ public class SecurityConfig {
                     "/swagger-ui/**",
                     "/v3/api-docs/**",
                     "/status",
-                    "/api/**"
+                    // "/api/**"
                 ).permitAll()
-                // .requestMatchers("/api/**").authenticated()
+                .requestMatchers("/api/**").permitAll()
             )
             .addFilterBefore(
                 jwtAuthenticationFilter,
