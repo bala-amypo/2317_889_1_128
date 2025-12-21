@@ -17,8 +17,8 @@ import com.example.demo.security.JwtAuthenticationFilter;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.security.CustomUserDetailsService;
 
-@Configuration
-@EnableWebSecurity
+// @Configuration
+// @EnableWebSecurity
 public class SecurityConfig {
 
     // private final JwtUtil jwtUtil;

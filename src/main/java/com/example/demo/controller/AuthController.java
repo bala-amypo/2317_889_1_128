@@ -10,8 +10,8 @@ import com.example.demo.dto.AuthResponse;
 import com.example.demo.entity.UserAccount;
 import com.example.demo.services.AuthService;
 
-@RestController
-@RequestMapping("/auth")
+// @RestController
+// @RequestMapping("/auth")
 public class AuthController {
 
     // private final AuthService authService;
@@ -26,9 +26,9 @@ public class AuthController {
     //     return authService.register(user);
     // }
 
-    // @PostMapping("/login")
-    // public AuthResponse login(
-    //         @RequestBody AuthRequest request) {
-    //     return authService.login(request);
-    // }
+    @PostMapping("/login")
+    public AuthResponse login(
+            @RequestBody AuthRequest request) {
+        return authService.login(request);
+    }
 }
