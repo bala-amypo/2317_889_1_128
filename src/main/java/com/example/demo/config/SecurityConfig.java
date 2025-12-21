@@ -29,54 +29,54 @@ public class SecurityConfig {
         // this.jwtUtil = jwtUtil;
     // }
 
-    @Bean
-    public JwtUtil jwtUtil() {
-        return new JwtUtil(
-                "my-secret-key", 
-                3600000
-        );
-    }
+    // @Bean
+    // public JwtUtil jwtUtil() {
+    //     return new JwtUtil(
+    //             "my-secret-key", 
+    //             3600000
+    //     );
+    // }
 
-    @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter(
-            JwtUtil jwtUtil,
-            CustomUserDetailsService userDetailsService) {
-        return new JwtAuthenticationFilter(jwtUtil, userDetailsService);
-    }
+    // @Bean
+    // public JwtAuthenticationFilter jwtAuthenticationFilter(
+    //         JwtUtil jwtUtil,
+    //         CustomUserDetailsService userDetailsService) {
+    //     return new JwtAuthenticationFilter(jwtUtil, userDetailsService);
+    // }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    // @Bean
+    // public PasswordEncoder passwordEncoder() {
+    //     return new BCryptPasswordEncoder();
+    // }
 
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
-    }
+    // @Bean
+    // public AuthenticationManager authenticationManager(
+    //         AuthenticationConfiguration configuration) throws Exception {
+    //     return configuration.getAuthenticationManager();
+    // }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
+    // @Bean
+    // public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
 
-        http
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers(
-                    "/auth/**",
-                    "/swagger-ui/**",
-                    "/v3/api-docs/**",
-                    "/status"
-                ).permitAll()
-                .requestMatchers("/api/**").authenticated()
-            )
-            .addFilterBefore(
-                jwtAuthenticationFilter,
-                UsernamePasswordAuthenticationFilter.class
-            );
+    //     http
+    //         .csrf(csrf -> csrf.disable())
+    //         .sessionManagement(session ->
+    //             session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+    //         )
+    //         .authorizeHttpRequests(auth -> auth
+    //             .requestMatchers(
+    //                 "/auth/**",
+    //                 "/swagger-ui/**",
+    //                 "/v3/api-docs/**",
+    //                 "/status"
+    //             ).permitAll()
+    //             .requestMatchers("/api/**").authenticated()
+    //         )
+    //         .addFilterBefore(
+    //             jwtAuthenticationFilter,
+    //             UsernamePasswordAuthenticationFilter.class
+    //         );
 
-        return http.build();
-    }
+    //     return http.build();
+    // }
 }
