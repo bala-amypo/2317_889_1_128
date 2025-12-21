@@ -16,40 +16,40 @@ import com.example.demo.services.AuthService;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    // private final AuthenticationManager authManager;
-    // private final JwtUtil jwtUtil;
-    // private final UserAccountRepository userRepo;
-    // private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authManager;
+    private final JwtUtil jwtUtil;
+    private final UserAccountRepository userRepo;
+    private final PasswordEncoder passwordEncoder;
 
-    // public AuthServiceImpl(AuthenticationManager authManager,
-    //         JwtUtil jwtUtil,
-    //         UserAccountRepository userRepo,
-    //         PasswordEncoder passwordEncoder) {
-    //     this.authManager = authManager;
-    //     this.jwtUtil = jwtUtil;
-    //     this.userRepo = userRepo;
-    //     this.passwordEncoder = passwordEncoder;
-    // }
+    public AuthServiceImpl(AuthenticationManager authManager,
+            JwtUtil jwtUtil,
+            UserAccountRepository userRepo,
+            PasswordEncoder passwordEncoder) {
+        this.authManager = authManager;
+        this.jwtUtil = jwtUtil;
+        this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    // @Override
-    // public AuthResponse login(AuthRequest request) {
+    @Override
+    public AuthResponse login(AuthRequest request) {
 
-    //     authManager.authenticate(
-    //             new UsernamePasswordAuthenticationToken(
-    //                     request.getEmail(),
-    //                     request.getPassword()));
+        authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()));
 
-    //     UserAccount user = userRepo.findByEmail(request.getEmail())
-    //             .orElseThrow(() -> new RuntimeException("User not found"));
+        UserAccount user = userRepo.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-    //     String token = jwtUtil.generateToken(user);
+        String token = jwtUtil.generateToken(user);
 
-    //     return new AuthResponse(
-    //             token,
-    //             user.getId(),
-    //             user.getEmail(),
-    //             user.getRole().name());
-    // }
+        return new AuthResponse(
+                token,
+                user.getId(),
+                user.getEmail(),
+                user.getRole().name());
+    }
 
     // @Override
     // public UserAccount register(UserAccount user) {

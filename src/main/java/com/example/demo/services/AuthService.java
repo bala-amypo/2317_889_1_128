@@ -6,7 +6,7 @@ import com.example.demo.entity.UserAccount;
 
 public interface AuthService {
 
-    // AuthResponse login(AuthRequest request);
+    AuthResponse login(AuthRequest request);
 
     // UserAccount register(UserAccount user);
 }
