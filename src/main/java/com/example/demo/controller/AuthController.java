@@ -14,21 +14,21 @@ import com.example.demo.services.AuthService;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final AuthService authService;
+    // private final AuthService authService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+    // public AuthController(AuthService authService) {
+    //     this.authService = authService;
+    // }
 
-    @PostMapping("/register")
-    public UserAccount register(
-            @RequestBody UserAccount user) {
-        return authService.register(user);
-    }
+    // @PostMapping("/register")
+    // public UserAccount register(
+    //         @RequestBody UserAccount user) {
+    //     return authService.register(user);
+    // }
 
-    @PostMapping("/login")
-    public AuthResponse login(
-            @RequestBody AuthRequest request) {
-        return authService.login(request);
-    }
+    // @PostMapping("/login")
+    // public AuthResponse login(
+    //         @RequestBody AuthRequest request) {
+    //     return authService.login(request);
+    // }
 }
