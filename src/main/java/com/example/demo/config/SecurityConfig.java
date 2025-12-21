@@ -21,13 +21,13 @@ import com.example.demo.security.CustomUserDetailsService;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final JwtUtil jwtUtil;
-    private final JwtAuthenticationFilter jwtFilter;
+    // private final JwtUtil jwtUtil;
+    // private final JwtAuthenticationFilter jwtFilter;
 
-    public SecurityConfig(JwtAuthenticationFilter jwtFilter) {
-        this.jwtFilter = jwtFilter;
-        this.jwtUtil = jwtUtil;
-    }
+    // public SecurityConfig(JwtAuthenticationFilter jwtFilter) {
+    //     this.jwtFilter = jwtFilter;
+    //     this.jwtUtil = jwtUtil;
+    // }
 
     @Bean
     public JwtUtil jwtUtil() {
