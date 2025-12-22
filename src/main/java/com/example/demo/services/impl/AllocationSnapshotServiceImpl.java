@@ -57,7 +57,7 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
             AssetClassType assetClass = holding.getAssetClassType();
             double value = holding.getCurrentValue();
 
-            allocations.put(
+    demo/src/main/java/com/example/demo/repository        allocations.put(
                     assetClass,
                     allocations.getOrDefault(assetClass, 0.0) + value);
         }
