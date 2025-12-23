@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.RebalancingAlertRecord;
-import com.example.demo.services.RebalancingAlertService;
+import com.example.demo.service.RebalancingAlertService;
 
 @RestController
 @RequestMapping("/api/alerts")

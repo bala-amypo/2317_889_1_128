@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.UserAccount;
-import com.example.demo.services.UserAccountService;
+import com.example.demo.service.UserAccountService;
 
 
 @RestController

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.HoldingRecord;
-import com.example.demo.services.HoldingRecordService;
+import com.example.demo.service.HoldingRecordService;
 
 @RestController
 @RequestMapping("/api/holdings")

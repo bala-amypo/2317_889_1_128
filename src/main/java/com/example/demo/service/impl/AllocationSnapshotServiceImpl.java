@@ -1,4 +1,4 @@
-package com.example.demo.services.impl;
+package com.example.demo.service.impl;
 
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import com.example.demo.repository.AllocationSnapshotRecordRepository;
 import com.example.demo.repository.AssetClassAllocationRuleRepository;
 import com.example.demo.repository.HoldingRecordRepository;
 import com.example.demo.repository.RebalancingAlertRecordRepository;
-import com.example.demo.services.AllocationSnapshotService;
+import com.example.demo.service.AllocationSnapshotService;
 
 @Service
 public class AllocationSnapshotServiceImpl implements AllocationSnapshotService {

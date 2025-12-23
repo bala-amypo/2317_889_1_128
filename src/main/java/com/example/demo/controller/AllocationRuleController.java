@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.AssetClassAllocationRule;
-import com.example.demo.services.AllocationRuleService;
+import com.example.demo.service.AllocationRuleService;
 
 @RestController
 @RequestMapping("/api/allocation-rules")

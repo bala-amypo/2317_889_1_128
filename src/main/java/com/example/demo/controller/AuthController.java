@@ -8,7 +8,7 @@
 // import com.example.demo.dto.AuthRequest;
 // import com.example.demo.dto.AuthResponse;
 // import com.example.demo.entity.UserAccount;
-// import com.example.demo.services.AuthService;
+// import com.example.demo.service.AuthService;
 
 // @RestController
 // @RequestMapping("/auth")

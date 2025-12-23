@@ -1,4 +1,5 @@
 package com.example.demo.config;
+package com.example.demo.security.*;
 
 import io.jsonwebtoken.*;
 import org.springframework.security.core.Authentication;
@@ -14,7 +15,7 @@ public class JwtTokenProvider {
 
     public String generateToken(Authentication authentication) {
 
-        CustomUserDetails user =
+        CustomUserDetailsService user =
                 (CustomUserDetails) authentication.getPrincipal();
 
         return Jwts.builder()
