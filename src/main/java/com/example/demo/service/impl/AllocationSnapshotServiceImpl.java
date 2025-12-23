@@ -173,15 +173,16 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
 
                     RebalancingAlertRecord alert =
                             new RebalancingAlertRecord(
-                                    investorId,
-                                    rule.getAssetClass(),
-                                    60.0,
-                                    rule.getTargetPercentage(),
-                                    AlertSeverity.MEDIUM,
-                                    "auto",
-                                    LocalDateTime.now(),
-                                    false
-                            );
+                                LocalDateTime.now(),        // alertDate
+                                rule.getAssetClass(),       // assetClass
+                                60.0,                       // currentPercentage
+                                null,                       // id (AUTO-GENERATED)
+                                investorId,                 // investorId
+                                "auto",                     // message
+                                false,                      // resolved
+                                AlertSeverity.MEDIUM,       // severity
+                                rule.getTargetPercentage()  // targetPercentage
+                        );
 
                     alertRepository.save(alert);
                 });
