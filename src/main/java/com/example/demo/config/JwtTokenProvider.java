@@ -63,11 +63,7 @@ public class JwtTokenProvider {
     public String generateToken(Authentication auth, UserAccount user) {
         return auth.getName() + "-token";
     }
-
-    // public boolean validateToken(String token) {
-    //     return token != null && token.contains("-token");
-    // }
-
+    
     public boolean validateToken(String token) {
         if (token == null) {
             return false;
