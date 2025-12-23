@@ -27,7 +27,7 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
     public AllocationSnapshotServiceImpl(
             AllocationSnapshotRecordRepository snapshotRepo,
             HoldingRecordRepository holdingRepo,
-            AssetClassAllocationRepository ruleRepo,
+            AssetClassAllocationRuleRepository ruleRepo,
             RebalancingAlertRecordRepository alertRepo) {
         this.snapshotRepo = snapshotRepo;
         this.holdingRepo = holdingRepo;
