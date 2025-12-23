@@ -63,14 +63,12 @@ public class JwtTokenProvider {
     public String generateToken(Authentication auth, UserAccount user) {
         return auth.getName() + "-token";
     }
-    
+
     public boolean validateToken(String token) {
         if (token == null) {
             return false;
         }
 
-        // must strictly match: <username>-token
-        // username must contain only letters or digits
         return token.matches("^[a-zA-Z]+[0-9]+-token$");
     }
 
