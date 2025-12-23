@@ -113,11 +113,11 @@ public class AllocationSnapshotRecord {
         this.investorId = investorId;
     }
 
-    public LocalDateTime getSnapShotDate() {
+    public LocalDateTime getSnapshotDate() {
         return snapshotDate;
     }
 
-    public void setSnapShotDate(LocalDateTime snapshotDate) {
+    public void setSnapshotDate(LocalDateTime snapshotDate) {
         this.snapshotDate = snapshotDate;
     }
 
