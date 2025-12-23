@@ -64,8 +64,17 @@ public class JwtTokenProvider {
         return auth.getName() + "-token";
     }
 
+    // public boolean validateToken(String token) {
+    //     return token != null && token.contains("-token");
+    // }
+
     public boolean validateToken(String token) {
-        return token != null && token.contains("-token");
+        if (token == null) return false;
+
+        if (!token.endsWith("-token")) return false;
+
+        String username = token.substring(0, token.length() - 6);
+        return !username.isBlank();
     }
 
     public String getUsernameFromToken(String token) {
