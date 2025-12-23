@@ -228,9 +228,7 @@ public class RebalancingAlertRecord {
         this.resolved = resolved;
     }
 
-    public void setAssetClass(Object assetClass) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-
+    // public void setAssetClass(Object assetClass) {
+    //     throw new UnsupportedOperationException("Not supported yet.");
+    // }
 }
