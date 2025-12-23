@@ -118,7 +118,7 @@ public class InvestorProfile {
         String fullName,
         String email,
         boolean active,
-        LocalDateTime createdAt
+        // LocalDateTime createdAt
     ) {
         this.investorId = investorId;
         this.fullName = fullName;
