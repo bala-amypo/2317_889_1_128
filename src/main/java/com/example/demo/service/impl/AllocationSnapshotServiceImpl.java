@@ -11,7 +11,7 @@ import com.example.demo.entity.RebalancingAlertRecord;
 import com.example.demo.entity.enums.AssetClassType;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.AllocationSnapshotRecordRepository;
-import com.example.demo.repository.AssetClassAllocationRepository;
+import com.example.demo.repository.AssetClassAllocationRuleRepository;
 import com.example.demo.repository.HoldingRecordRepository;
 import com.example.demo.repository.RebalancingAlertRecordRepository;
 import com.example.demo.services.AllocationSnapshotService;
@@ -21,7 +21,7 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
 
     private final AllocationSnapshotRecordRepository snapshotRepo;
     private final HoldingRecordRepository holdingRepo;
-    private final AssetClassAllocationRepository ruleRepo;
+    private final AssetClassAllocationRuleRepository ruleRepo;
     private final RebalancingAlertRecordRepository alertRepo;
 
     public AllocationSnapshotServiceImpl(

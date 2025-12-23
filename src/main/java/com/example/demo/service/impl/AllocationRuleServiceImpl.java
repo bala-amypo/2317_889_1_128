@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.AssetClassAllocationRule;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.repository.AssetClassAllocationRepository;
+import com.example.demo.repository.AssetClassAllocationRuleRepository;
 import com.example.demo.services.AllocationRuleService;
 
 @Service
 public class AllocationRuleServiceImpl implements AllocationRuleService {
-    private final AssetClassAllocationRepository assetClassAllocationRepository;
+    private final AssetClassAllocationRuleRepository assetClassAllocationRepository;
 
-    public AllocationRuleServiceImpl(AssetClassAllocationRepository assetClassAllocationRepository) {
+    public AllocationRuleServiceImpl(AssetClassAllocationRuleRepository assetClassAllocationRepository) {
         this.assetClassAllocationRepository = assetClassAllocationRepository;
     }
 
