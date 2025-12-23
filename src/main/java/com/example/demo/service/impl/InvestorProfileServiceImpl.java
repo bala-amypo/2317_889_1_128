@@ -49,8 +49,6 @@
 //     }
 // }
 
-
-// src/main/java/com/example/demo/service/impl/InvestorProfileServiceImpl.java
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.InvestorProfile;
@@ -77,7 +75,8 @@ public class InvestorProfileServiceImpl implements InvestorProfileService {
     @Override
     public InvestorProfile getInvestorById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Investor not found: " + id));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Investor not found: " + id));
     }
 
     @Override

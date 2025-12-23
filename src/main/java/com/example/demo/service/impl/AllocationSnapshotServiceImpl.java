@@ -153,10 +153,11 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
                 .mapToDouble(HoldingRecord::getCurrentValue)
                 .sum();
 
+        // ✅ MATCHES YOUR ENTITY CONSTRUCTOR EXACTLY
         AllocationSnapshotRecord snapshot =
                 new AllocationSnapshotRecord(
-                        "{}",          // allocationString
-                        null,          // id (auto generated)
+                        "{}",               // allocationString
+                        null,               // id (auto-generated)
                         investorId,
                         LocalDateTime.now(),
                         totalValue
@@ -164,12 +165,12 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
 
         snapshotRepository.save(snapshot);
 
-
-        // create alerts (logic-only, test-safe)
+        // create alerts safely
         ruleRepository.findByInvestorId(investorId)
                 .stream()
                 .filter(AssetClassAllocationRule::isActive)
                 .forEach(rule -> {
+
                     RebalancingAlertRecord alert =
                             new RebalancingAlertRecord(
                                     investorId,
@@ -181,6 +182,7 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
                                     LocalDateTime.now(),
                                     false
                             );
+
                     alertRepository.save(alert);
                 });
 
