@@ -153,16 +153,17 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
                 .mapToDouble(HoldingRecord::getCurrentValue)
                 .sum();
 
-        // ✅ CORRECT constructor usage
         AllocationSnapshotRecord snapshot =
                 new AllocationSnapshotRecord(
+                        "{}",          // allocationString
+                        null,          // id (auto generated)
                         investorId,
                         LocalDateTime.now(),
-                        totalValue,
-                        "{}"
+                        totalValue
                 );
 
         snapshotRepository.save(snapshot);
+
 
         // create alerts (logic-only, test-safe)
         ruleRepository.findByInvestorId(investorId)
