@@ -1,47 +1,84 @@
+// package com.example.demo.service.impl;
+
+// import java.util.List;
+
+// import org.springframework.stereotype.Service;
+
+// import com.example.demo.entity.HoldingRecord;
+// import com.example.demo.exception.ResourceNotFoundException;
+// import com.example.demo.repository.HoldingRecordRepository;
+// import com.example.demo.service.HoldingRecordService;
+
+
+// @Service
+// public class HoldingRecordServiceImpl implements HoldingRecordService {
+
+//     private final HoldingRecordRepository holdingRepo;
+
+//     public HoldingRecordServiceImpl(HoldingRecordRepository holdingRepo) {
+//         this.holdingRepo = holdingRepo;
+//     }
+
+//     @Override
+//     public HoldingRecord recordHolding(HoldingRecord holding) {
+//         if (holding.getCurrentValue() <= 0) {
+//             throw new IllegalArgumentException("must be > 0");
+//         }
+//         holdingRepo.save(holding);
+//         return holding;
+//     }
+
+//     @Override
+//     public List<HoldingRecord> getHoldingsByInvestor(Long investorId) {
+//         return holdingRepo.findByInvestorId(investorId);
+//     }
+
+//     @Override
+//     public HoldingRecord getHoldingById(Long id) {
+//         return holdingRepo.findById(id).orElseThrow(
+//             () -> new ResourceNotFoundException("not found")
+//         );
+//     }
+
+//     @Override
+//     public List<HoldingRecord> getAllHoldings() {
+//         return holdingRepo.findAll();
+//     }
+// }
+
 package com.example.demo.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.HoldingRecord;
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.HoldingRecordRepository;
 import com.example.demo.service.HoldingRecordService;
 
-
 @Service
 public class HoldingRecordServiceImpl implements HoldingRecordService {
+    private final HoldingRecordRepository repo;
 
-    private final HoldingRecordRepository holdingRepo;
-
-    public HoldingRecordServiceImpl(HoldingRecordRepository holdingRepo) {
-        this.holdingRepo = holdingRepo;
+    public HoldingRecordServiceImpl(HoldingRecordRepository repo) {
+        this.repo = repo;
     }
 
     @Override
-    public HoldingRecord recordHolding(HoldingRecord holding) {
-        if (holding.getCurrentValue() <= 0) {
-            throw new IllegalArgumentException("must be > 0");
-        }
-        holdingRepo.save(holding);
-        return holding;
+    public HoldingRecord recordHolding(HoldingRecord h) {
+        if (h.getCurrentValue() <= 0)
+            throw new IllegalArgumentException("Value must be > 0");
+        return repo.save(h);
     }
-
+    
     @Override
     public List<HoldingRecord> getHoldingsByInvestor(Long investorId) {
-        return holdingRepo.findByInvestorId(investorId);
+        return repo.findByInvestorId(investorId);
     }
-
+    
     @Override
-    public HoldingRecord getHoldingById(Long id) {
-        return holdingRepo.findById(id).orElseThrow(
-            () -> new ResourceNotFoundException("not found")
-        );
-    }
-
-    @Override
-    public List<HoldingRecord> getAllHoldings() {
-        return holdingRepo.findAll();
+    public Optional<HoldingRecord> getHoldingById(Long id) {
+        return repo.findById(id);
     }
 }

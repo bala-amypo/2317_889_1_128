@@ -10,11 +10,11 @@
 //     List<AllocationSnapshotRecord> getAllSnapshots();
 // }
 
-package sbs.rosedev.springFirst.service;
+package com.example.demo.service;
 
 import java.util.List;
 
-import sbs.rosedev.springFirst.entity.AllocationSnapshotRecord;
+import com.example.demo.entity.AllocationSnapshotRecord;
 
 public interface AllocationSnapshotService {
 
