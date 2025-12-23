@@ -156,21 +156,11 @@ public class AllocationSnapshotServiceImpl implements AllocationSnapshotService 
                 new AllocationSnapshotRecord(investorId, LocalDateTime.now(), total, "{}");
         snapshotRepository.save(snapshot);
 
-        ruleRepository.findByInvestorIdAndActiveTrue(investorId)
-                .forEach(rule ->
-                        alertRepository.save(
-                                new RebalancingAlertRecord(
-                                        investorId,
-                                        rule.getAssetClass(),
-                                        60.0,
-                                        rule.getTargetPercentage(),
-                                        AlertSeverity.MEDIUM,
-                                        "auto",
-                                        LocalDateTime.now(),
-                                        false
-                                )
-                        )
-                );
+        ruleRepository.findByInvestorId(investorId)
+        .stream()
+        .filter(AssetClassAllocationRule::isActive)
+        .toList();
+
 
         return snapshot;
     }
