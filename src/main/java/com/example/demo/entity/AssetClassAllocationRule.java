@@ -41,7 +41,7 @@ public class AssetClassAllocationRule {
         this.investorId = investorId;
     }
 
-    public AssetClassType getAssetClassType() {
+    public AssetClassType getAssetClass() {
         return assetClass;
     }
 
