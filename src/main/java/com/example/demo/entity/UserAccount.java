@@ -105,6 +105,9 @@ public class UserAccount {
     private String password;
     private RoleType role;
 
+    public UserAccount() {
+    }
+
     public UserAccount(String username, String email, String password, RoleType role) {
         this.username = username;
         this.email = email;
