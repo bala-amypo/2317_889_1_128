@@ -8,5 +8,5 @@ import com.example.demo.entity.RebalancingAlertRecord;
 
 public interface RebalancingAlertRecordRepository extends JpaRepository<RebalancingAlertRecord, Long> {
     List<RebalancingAlertRecord> findByInvestorId(Long investorId);
-    List<RebalancingAlertRecord> findByResolvedFalse();
+    // List<RebalancingAlertRecord> findByResolvedFalse();
 }
