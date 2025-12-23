@@ -111,7 +111,7 @@ public class AssetClassAllocationRule {
         this.investorId = investorId;
     }
 
-    public AssetClassType getAssetClassType() {
+    public AssetClassType getAssetClass() {
         return assetClass;
     }
 
@@ -135,7 +135,7 @@ public class AssetClassAllocationRule {
         this.active = active;
     }
 
-    public Object getAssetClass() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    // public Object getAssetClass() {
+    //     this;
+    // }
 }
