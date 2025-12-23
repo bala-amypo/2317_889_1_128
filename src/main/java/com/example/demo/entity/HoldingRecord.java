@@ -43,7 +43,7 @@ public class HoldingRecord {
         this.investorId = investorId;
     }
 
-    public AssetClassType getAssetClassType() {
+    public AssetClassType getAssetClass() {
         return assetClass;
     }
 
