@@ -112,7 +112,7 @@ public class HoldingRecord {
         this.investorId = investorId;
     }
 
-    public AssetClassType getAssetClassType() {
+    public AssetClassType getAssetClass() {
         return assetClass;
     }
 
@@ -134,9 +134,5 @@ public class HoldingRecord {
 
     public void setcreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public AssetClassType getAssetClass() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
