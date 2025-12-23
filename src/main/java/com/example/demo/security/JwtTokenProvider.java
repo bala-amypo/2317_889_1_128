@@ -14,7 +14,7 @@ public class JwtTokenProvider {
 
     public String generateToken(Authentication authentication) {
 
-        CustomUserDetailsService user =
+        CustomUserDetails user =
                 (CustomUserDetails) authentication.getPrincipal();
 
         return Jwts.builder()
