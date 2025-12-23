@@ -87,7 +87,7 @@ public class InvestorProfileController {
     }
 
     @GetMapping("/lookup/{investorId}")
-    public Optional<InvestorProfile> findByInvestorId(@PathVariable String investorId) {
+    public InvestorProfile findByInvestorId(@PathVariable String investorId) {
         return investorProfileService.findByInvestorId(investorId);
     }
 
