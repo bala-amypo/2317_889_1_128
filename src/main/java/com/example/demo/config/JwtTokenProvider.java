@@ -75,7 +75,7 @@ public class JwtTokenProvider {
 
         // must strictly match: <username>-token
         // username must contain only letters or digits
-        return token.matches("^[a-zA-Z0-9]+-token$");
+        return token.matches("^[a-zA-Z]+[0-9]+-token$");
     }
 
     public String getUsernameFromToken(String token) {
