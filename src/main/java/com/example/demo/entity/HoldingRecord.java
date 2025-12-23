@@ -85,6 +85,9 @@ public class HoldingRecord {
     private Double currentValue;
     private LocalDateTime createdAt;
 
+    public HoldingRecord() {
+    }
+
     public HoldingRecord(Long investorId, AssetClassType assetClass,
                          Double currentValue, LocalDateTime createdAt) {
         this.investorId = investorId;
