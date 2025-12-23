@@ -69,12 +69,13 @@ public class JwtTokenProvider {
     // }
 
     public boolean validateToken(String token) {
-        if (token == null) return false;
+        if (token == null) {
+            return false;
+        }
 
-        if (!token.endsWith("-token")) return false;
-
-        String username = token.substring(0, token.length() - 6);
-        return !username.isBlank();
+        // must strictly match: <username>-token
+        // username must contain only letters or digits
+        return token.matches("^[a-zA-Z0-9]+-token$");
     }
 
     public String getUsernameFromToken(String token) {
