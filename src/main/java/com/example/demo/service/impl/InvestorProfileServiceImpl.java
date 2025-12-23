@@ -92,7 +92,7 @@ public class InvestorProfileServiceImpl implements InvestorProfileService {
     }
 
     @Override
-    public Optional<InvestorProfile> findByInvestorId(String investorId) {
+    public InvestorProfile findByInvestorId(String investorId) {
         return repository.findByInvestorId(investorId);
     }
 }
