@@ -76,7 +76,7 @@ public class HoldingRecordController {
     }
 
     @GetMapping("/{id}")
-    public Optional<HoldingRecord> getById(@PathVariable Long id) {
+    public HoldingRecord getById(@PathVariable Long id) {
         return holdingService.getHoldingById(id);
     }
 }
