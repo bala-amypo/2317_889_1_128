@@ -1,10 +1,79 @@
+// package com.example.demo.entity;
+
+// import java.time.LocalDateTime;
+
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.Id;
+
+// import com.example.demo.entity.enums.AssetClassType;
+
+// @Entity
+// public class HoldingRecord {
+//     @Id
+//     private Long id;
+//     private Long investorId;
+//     private AssetClassType assetClass;
+//     private Double currentValue;
+//     private LocalDateTime snapShotDate;
+
+//     public HoldingRecord() {
+//     }
+
+//     public HoldingRecord(AssetClassType assetClass, Double currentValue, Long id, Long investorId, LocalDateTime snapShotDate) {
+//         this.assetClass = assetClass;
+//         this.currentValue = currentValue;
+//         this.id = id;
+//         this.investorId = investorId;
+//         this.snapShotDate = snapShotDate;
+//     }
+
+//     public Long getId() {
+//         return id;
+//     }
+
+//     public void setId(Long id) {
+//         this.id = id;
+//     }
+
+//     public Long getInvestorId() {
+//         return investorId;
+//     }
+
+//     public void setInvestorId(Long investorId) {
+//         this.investorId = investorId;
+//     }
+
+//     public AssetClassType getAssetClass() {
+//         return assetClass;
+//     }
+
+//     public void setAssetClassType(AssetClassType assetClass) {
+//         this.assetClass = assetClass;
+//     }
+
+//     public Double getCurrentValue() {
+//         return currentValue;
+//     }
+
+//     public void setCurrentValue(Double currentValue) {
+//         this.currentValue = currentValue;
+//     }
+
+//     public LocalDateTime getSnapShotDate() {
+//         return snapShotDate;
+//     }
+
+//     public void setSnapShotDate(LocalDateTime snapShotDate) {
+//         this.snapShotDate = snapShotDate;
+//     }
+// }
+
 package com.example.demo.entity;
 
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-
 import com.example.demo.entity.enums.AssetClassType;
 
 @Entity
@@ -14,17 +83,14 @@ public class HoldingRecord {
     private Long investorId;
     private AssetClassType assetClass;
     private Double currentValue;
-    private LocalDateTime snapShotDate;
+    private LocalDateTime createdAt;
 
-    public HoldingRecord() {
-    }
-
-    public HoldingRecord(AssetClassType assetClass, Double currentValue, Long id, Long investorId, LocalDateTime snapShotDate) {
+    public HoldingRecord(Long investorId, AssetClassType assetClass,
+                         Double currentValue, LocalDateTime createdAt) {
+        this.investorId = investorId;
         this.assetClass = assetClass;
         this.currentValue = currentValue;
-        this.id = id;
-        this.investorId = investorId;
-        this.snapShotDate = snapShotDate;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -43,7 +109,7 @@ public class HoldingRecord {
         this.investorId = investorId;
     }
 
-    public AssetClassType getAssetClass() {
+    public AssetClassType getAssetClassType() {
         return assetClass;
     }
 
@@ -59,11 +125,15 @@ public class HoldingRecord {
         this.currentValue = currentValue;
     }
 
-    public LocalDateTime getSnapShotDate() {
-        return snapShotDate;
+    public LocalDateTime getcreatedAt() {
+        return createdAt;
     }
 
-    public void setSnapShotDate(LocalDateTime snapShotDate) {
-        this.snapShotDate = snapShotDate;
+    public void setcreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public AssetClassType getAssetClass() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
