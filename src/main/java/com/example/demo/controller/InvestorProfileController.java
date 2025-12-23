@@ -15,39 +15,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 @RestController
 @RequestMapping("/api/investors")
 public class InvestorProfileController {
-    private final InvestorProfileService investorProfileService;
 
-    public InvestorProfileController(InvestorProfileService investorProfileService) {
-        this.investorProfileService = investorProfileService;
+    private final InvestorProfileServiceImpl service;
+
+    public InvestorProfileController(InvestorProfileServiceImpl service) {
+        this.service = service;
     }
 
-    @PostMapping("/")
-    public InvestorProfile postInvestorProfile(@RequestBody InvestorProfile investor) {
-        return investorProfileService.createInvestorProfile(investor);
+    @PostMapping
+    public InvestorProfile createInvestor(@RequestBody InvestorProfile investor) {
+        return service.createInvestor(investor);
     }
 
     @GetMapping("/{id}")
-    public InvestorProfile getInvestorProfile(@PathVariable Long id) {
-        return investorProfileService.getInvestorById(id);
+    public InvestorProfile getInvestorById(@PathVariable Long id) {
+        return service.getInvestorById(id);
     }
-    
+
     @GetMapping
-    public List<InvestorProfile> getAllInvestorProfile() {
-        return investorProfileService.getAllInvestors();
+    public List<InvestorProfile> getAllInvestors() {
+        return service.getAllInvestors();
     }
 
     @PutMapping("/{id}/status")
-    public InvestorProfile putInvestorProfile(@PathVariable Long id, @RequestParam boolean active) {
-        return investorProfileService.updateInvestorStatus(id, active);
+    public InvestorProfile updateStatus(
+            @PathVariable Long id,
+            @RequestParam Boolean active) {
+        return service.updateInvestorStatus(id, active);
     }
 
     @GetMapping("/lookup/{investorId}")
-    public InvestorProfile getMethodName(@PathVariable String investorId) {
-        return investorProfileService.findInvestorById(investorId);
-    }    
+    public Optional<InvestorProfile> findByInvestorId(
+            @PathVariable String investorId) {
+        return service.findByInvestorId(investorId);
+    }
 }
-
