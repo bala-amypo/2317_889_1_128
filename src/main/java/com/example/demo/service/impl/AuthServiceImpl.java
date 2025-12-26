@@ -49,7 +49,7 @@ public class AuthServiceImpl implements AuthService {
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new RuntimeException("Invalid password");
         }
-
+    
         Authentication auth =
             new UsernamePasswordAuthenticationToken(user.getEmail(), null);
 
