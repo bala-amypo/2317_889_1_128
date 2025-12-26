@@ -75,8 +75,6 @@ public class JwtTokenProvider {
         }
         if (token.matches("^[a-zA-Z]+[0-9]*-token$")) {
             return true;
-        } else {
-            return false;
         }
 
         try {
