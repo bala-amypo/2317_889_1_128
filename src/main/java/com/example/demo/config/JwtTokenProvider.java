@@ -116,8 +116,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtTokenProvider {
 
-    private final String secret = "test-secret-key";
-    private final long validity = 86400000; // 1 day
+    private final String secret;
+    private final long validity; // 1 day
 
     public JwtTokenProvider(String secret, long validity) {
         this.secret = secret;
