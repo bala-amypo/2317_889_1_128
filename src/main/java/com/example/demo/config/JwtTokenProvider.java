@@ -49,10 +49,9 @@ public class JwtTokenProvider {
     private final String secret;
     private final long validity;
 
-    public JwtTokenProvider() {
-        // default values so tests don’t fail
-        this.secret = "test-secret-key";
-        this.validity = 86400000; // 1 day
+    public JwtTokenProvider(String secret, long validity) {
+        this.secret = secret;
+        this.validity = validity;
     }
 
     /* -------------------------------------------------
