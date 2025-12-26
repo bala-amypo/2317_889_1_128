@@ -119,13 +119,13 @@ public class JwtTokenProvider {
     // private final String secret;
     // private final long validity;
 
-    private String secret = "test-secret-key";
-    private long validity = 86400000;
+    private final String secret = "test-secret-key";
+    private final long validity = 86400000;
 
-    public JwtTokenProvider(String secret, long validity) {
-        this.secret = secret;
-        this.validity = validity;
-    }
+    // public JwtTokenProvider(String secret, long validity) {
+    //     this.secret = secret;
+    //     this.validity = validity;
+    // }
 
     public String generateToken(Authentication auth, UserAccount user) {
 
