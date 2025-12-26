@@ -89,7 +89,7 @@ public class JwtTokenProvider {
 
         // ✅ Test tokens like "user1-token"
         if (!token.contains(".")) {
-            return token.matches("^[a-zA-Z]+[0-9]*-token$");
+            return token.matches("^[a-zA-Z]+[0-9]+-token$");
         }
 
         // ✅ Runtime JWT validation
