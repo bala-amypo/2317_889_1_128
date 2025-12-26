@@ -113,11 +113,14 @@ import com.example.demo.entity.UserAccount;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-// @Component
+@Component
 public class JwtTokenProvider {
 
-    private final String secret;
-    private final long validity; // 1 day
+    // private final String secret;
+    // private final long validity;
+
+    private String secret = "test-secret-key";
+    private long validity = 86400000;
 
     public JwtTokenProvider(String secret, long validity) {
         this.secret = secret;
