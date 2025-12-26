@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import com.example.demo.entity.UserAccount;
 
-@Component
 public class JwtTokenProvider {
     private final String secret;
     private final long validity;
