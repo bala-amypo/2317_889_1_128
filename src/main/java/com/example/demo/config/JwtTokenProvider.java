@@ -54,11 +54,6 @@ public class JwtTokenProvider {
         this.validity = validity;
     }
 
-    /* -------------------------------------------------
-       TOKEN GENERATION
-       ------------------------------------------------- */
-
-    // ✅ Used by REAL runtime (JWT)
     public String generateJwtToken(UserAccount user) {
         return Jwts.builder()
                 .setSubject(user.getEmail())
@@ -69,27 +64,19 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // ✅ Used by TEST CASES (DO NOT REMOVE)
     public String generateToken(Authentication auth, UserAccount user) {
         return auth.getName() + "-token";
     }
-
-    /* -------------------------------------------------
-       TOKEN VALIDATION
-       ------------------------------------------------- */
 
     public boolean validateToken(String token) {
 
         if (token == null || token.isBlank()) {
             return false;
         }
-
-        // ✅ TEST CASE SUPPORT
         if (token.matches("^[a-zA-Z]+[0-9]*-token$")) {
             return true;
         }
 
-        // ✅ REAL JWT SUPPORT
         try {
             Jwts.parser()
                 .setSigningKey(secret)
@@ -100,18 +87,11 @@ public class JwtTokenProvider {
         }
     }
 
-    /* -------------------------------------------------
-       USERNAME EXTRACTION
-       ------------------------------------------------- */
-
     public String getUsernameFromToken(String token) {
 
-        // ✅ TEST TOKEN
         if (token.endsWith("-token")) {
             return token.split("-")[0];
         }
-
-        // ✅ REAL JWT
         Claims claims = Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
