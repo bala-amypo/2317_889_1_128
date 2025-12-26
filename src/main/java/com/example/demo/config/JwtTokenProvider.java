@@ -119,6 +119,11 @@ public class JwtTokenProvider {
     private final String secret = "test-secret-key";
     private final long validity = 86400000; // 1 day
 
+    public JwtTokenProvider(String secret, long validity) {
+        this.secret = secret;
+        this.validity = validity;
+    }
+
     // ✅ SAME METHOD (tests + runtime)
     public String generateToken(Authentication auth, UserAccount user) {
 
