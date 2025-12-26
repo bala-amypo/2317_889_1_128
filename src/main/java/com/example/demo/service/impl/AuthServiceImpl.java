@@ -64,7 +64,6 @@ public class AuthServiceImpl implements AuthService {
             user.setRole(RoleType.INVESTOR);
         }
 
-        user.setActive(true);
         return userRepo.save(user);
     }
 
