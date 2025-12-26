@@ -124,7 +124,6 @@ public class JwtTokenProvider {
         this.validity = validity;
     }
 
-    // ✅ SAME METHOD (tests + runtime)
     public String generateToken(Authentication auth, UserAccount user) {
 
         String jwt = Jwts.builder()
@@ -135,23 +134,19 @@ public class JwtTokenProvider {
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
 
-        // IMPORTANT: prefix stays EXACTLY same
         return auth.getName() + "-token." + jwt;
     }
 
-    // ✅ SAME METHOD
     public boolean validateToken(String token) {
 
         if (token == null || !token.contains("-token")) {
             return false;
         }
 
-        // 🔹 Test-only token: "user-token"
         if (!token.contains(".")) {
             return token.matches("^[a-zA-Z]+[0-9]*-token$");
         }
 
-        // 🔹 Runtime JWT token
         try {
             String jwt = token.split("\\.", 2)[1];
 
@@ -165,7 +160,6 @@ public class JwtTokenProvider {
         }
     }
 
-    // ✅ SAME METHOD
     public String getUsernameFromToken(String token) {
 
         if (!token.contains(".")) {
