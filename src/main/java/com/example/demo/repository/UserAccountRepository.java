@@ -8,8 +8,8 @@ import com.example.demo.entity.UserAccount;
 
 public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
     Optional<UserAccount> findByEmail(String email);
-    Optional<UserAccount> findByUsername(String username);
-    
-    boolean existsByUsername(String username);
+    // Optional<UserAccount> findByUsername(String username);
+
+    // boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 }
