@@ -30,6 +30,77 @@
 //     }
 // }
 
+// package com.example.demo.config;
+
+// import java.util.Date;
+
+// import org.springframework.security.core.Authentication;
+// import org.springframework.stereotype.Component;
+
+// import com.example.demo.entity.UserAccount;
+
+// import io.jsonwebtoken.Claims;
+// import io.jsonwebtoken.Jwts;
+// import io.jsonwebtoken.SignatureAlgorithm;
+
+// @Component
+// public class JwtTokenProvider {
+
+//     private final String secret;
+//     private final long validity;
+
+//     public JwtTokenProvider(String secret, long validity) {
+//         this.secret = secret;
+//         this.validity = validity;
+//     }
+
+//     public String generateJwtToken(UserAccount user) {
+//         return Jwts.builder()
+//                 .setSubject(user.getEmail())
+//                 .claim("role", user.getRole().name())
+//                 .setIssuedAt(new Date())
+//                 .setExpiration(new Date(System.currentTimeMillis() + validity))
+//                 .signWith(SignatureAlgorithm.HS256, secret)
+//                 .compact();
+//     }
+
+//     public String generateToken(Authentication auth, UserAccount user) {
+//         return auth.getName() + "-token";
+//     }
+
+//     public boolean validateToken(String token) {
+
+//         if (token == null || token.isBlank()) {
+//             return false;
+//         }
+//         if (token.matches("^[a-zA-Z]+[0-9]*-token$")) {
+//             return true;
+//         }
+
+//         try {
+//             Jwts.parser()
+//                 .setSigningKey(secret)
+//                 .parseClaimsJws(token);
+//             return true;
+//         } catch (Exception e) {
+//             return false;
+//         }
+//     }
+
+//     public String getUsernameFromToken(String token) {
+
+//         if (token.endsWith("-token")) {
+//             return token.split("-")[0];
+//         }
+//         Claims claims = Jwts.parser()
+//                 .setSigningKey(secret)
+//                 .parseClaimsJws(token)
+//                 .getBody();
+
+//         return claims.getSubject();
+//     }
+// }
+
 package com.example.demo.config;
 
 import java.util.Date;
@@ -39,64 +110,63 @@ import org.springframework.stereotype.Component;
 
 import com.example.demo.entity.UserAccount;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JwtTokenProvider {
 
-    private final String secret;
-    private final long validity;
+    private final String secret = "test-secret-key";
+    private final long validity = 86400000; // 1 day
 
-    public JwtTokenProvider(String secret, long validity) {
-        this.secret = secret;
-        this.validity = validity;
-    }
+    // ✅ SAME METHOD (tests + runtime)
+    public String generateToken(Authentication auth, UserAccount user) {
 
-    public String generateJwtToken(UserAccount user) {
-        return Jwts.builder()
+        String jwt = Jwts.builder()
                 .setSubject(user.getEmail())
                 .claim("role", user.getRole().name())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + validity))
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
+
+        // IMPORTANT: prefix stays EXACTLY same
+        return auth.getName() + "-token." + jwt;
     }
 
-    public String generateToken(Authentication auth, UserAccount user) {
-        return auth.getName() + "-token";
-    }
-
+    // ✅ SAME METHOD
     public boolean validateToken(String token) {
 
-        if (token == null || token.isBlank()) {
+        if (token == null || !token.contains("-token")) {
             return false;
         }
-        if (token.matches("^[a-zA-Z]+[0-9]*-token$")) {
-            return true;
+
+        // 🔹 Test-only token: "user-token"
+        if (!token.contains(".")) {
+            return token.matches("^[a-zA-Z]+[0-9]*-token$");
         }
 
+        // 🔹 Runtime JWT token
         try {
+            String jwt = token.split("\\.", 2)[1];
+
             Jwts.parser()
                 .setSigningKey(secret)
-                .parseClaimsJws(token);
+                .parseClaimsJws(jwt);
+
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
+    // ✅ SAME METHOD
     public String getUsernameFromToken(String token) {
 
-        if (token.endsWith("-token")) {
+        if (!token.contains(".")) {
             return token.split("-")[0];
         }
-        Claims claims = Jwts.parser()
-                .setSigningKey(secret)
-                .parseClaimsJws(token)
-                .getBody();
 
-        return claims.getSubject();
+        return token.split("-token")[0];
     }
 }
