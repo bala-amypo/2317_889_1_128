@@ -1,70 +1,59 @@
 package com.example.demo.service.impl;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.AuthRequest;
 import com.example.demo.dto.AuthResponse;
 import com.example.demo.entity.UserAccount;
-import com.example.demo.entity.enums.RoleType;
 import com.example.demo.repository.UserAccountRepository;
-import com.example.demo.security.JwtUtil;
+import com.example.demo.security.JwtTokenProvider;
 import com.example.demo.service.AuthService;
 
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    private final AuthenticationManager authManager;
-    private final JwtUtil jwtUtil;
     private final UserAccountRepository userRepo;
+    private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthServiceImpl(AuthenticationManager authManager,
-            JwtUtil jwtUtil,
-            UserAccountRepository userRepo,
-            PasswordEncoder passwordEncoder) {
-        this.authManager = authManager;
-        this.jwtUtil = jwtUtil;
+    public AuthServiceImpl(UserAccountRepository userRepo,
+                           JwtTokenProvider jwtTokenProvider,
+                           PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
+        this.jwtTokenProvider = jwtTokenProvider;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    @Override
-    public AuthResponse login(AuthRequest request) {
-
-        authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()));
-
-        UserAccount user = userRepo.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        String token = jwtUtil.generateToken(user);
-
-        return new AuthResponse(
-                token,
-                user.getId(),
-                user.getEmail(),
-                user.getRole().name());
     }
 
     @Override
     public UserAccount register(UserAccount user) {
 
-        if (userRepo.findByEmail(user.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("Email already exists");
+        if (userRepo.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email already registered");
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        if (user.getRole() == null) {
-            user.setRole(RoleType.INVESTOR);
-        }
-
         return userRepo.save(user);
     }
 
+    @Override
+    public AuthResponse authenticate(AuthRequest request) {
+
+        UserAccount user = userRepo.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("Invalid email"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        String token = jwtTokenProvider.generateToken(user);
+
+        return new AuthResponse(
+                token,
+                user.getId(),
+                user.getEmail(),
+                user.getRole().name()
+        );
+    }
 }
