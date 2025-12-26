@@ -8,5 +8,5 @@ public interface AuthService {
 
     AuthResponse login(AuthRequest request);
 
-    UserAccount register(UserAccount user);
+    UserAccount register(UserAccount user);    
 }
