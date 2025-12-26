@@ -53,7 +53,7 @@ public class JwtTokenProvider {
 
     // ✅ REQUIRED by Spring Boot
     public JwtTokenProvider() {
-        this.secret = "test-secret-key-test-secret-key"; // ≥ 32 chars
+        this.secret = "this-is-a-very-secure-32-byte-jwt-secret-key";
         this.validity = 86400000;
     }
 
