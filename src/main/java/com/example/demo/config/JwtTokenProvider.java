@@ -113,7 +113,7 @@ import com.example.demo.entity.UserAccount;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@Component
+// @Component
 public class JwtTokenProvider {
 
     private final String secret;
