@@ -48,9 +48,20 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtTokenProvider {
 
-    // ≥ 32 chars required for HS256
-    private final String secret = "test-secret-key-test-secret-key";
-    private final long validity = 86400000; // 1 day
+    private final String secret;
+    private final long validity;
+
+    // ✅ REQUIRED by Spring Boot
+    public JwtTokenProvider() {
+        this.secret = "test-secret-key-test-secret-key"; // ≥ 32 chars
+        this.validity = 86400000;
+    }
+
+    // ✅ REQUIRED by TEST CASES
+    public JwtTokenProvider(String secret, long validity) {
+        this.secret = secret;
+        this.validity = validity;
+    }
 
     // 🔐 SAME METHOD (tests + runtime)
     public String generateToken(Authentication auth, UserAccount user) {
