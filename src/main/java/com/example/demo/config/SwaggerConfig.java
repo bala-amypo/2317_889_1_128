@@ -9,6 +9,23 @@ import java.util.List;
 @Configuration
 public class SwaggerConfig {
 
+   @Bean
+    public OpenAPI openAPI() {
+
+        SecurityScheme bearerAuth = new SecurityScheme()
+                .type(SecurityScheme.Type.HTTP)
+                .scheme("bearer")
+                .bearerFormat("JWT");
+
+        return new OpenAPI()
+                .components(
+                    new Components().addSecuritySchemes("bearerAuth", bearerAuth)
+                )
+                .addSecurityItem(
+                    new SecurityRequirement().addList("bearerAuth")
+                );
+    }     
+
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
