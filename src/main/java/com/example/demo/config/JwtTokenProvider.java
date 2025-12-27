@@ -42,6 +42,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.demo.entity.UserAccount;
 
+import io.jsonwebtoken.Claims; 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
