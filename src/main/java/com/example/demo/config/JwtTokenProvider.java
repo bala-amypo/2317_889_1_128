@@ -110,4 +110,17 @@ public class JwtTokenProvider {
         
         return token.split("-token")[0];
     }
+
+    public String getRoleFromToken(String token) {
+        if (!token.contains(".")) return null;
+
+        Claims claims = Jwts.parserBuilder()
+            .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes()))
+            .build()
+            .parseClaimsJws(token.split("\\.",2)[1])
+            .getBody();
+
+        return claims.get("role", String.class);
+    }
+
 }
