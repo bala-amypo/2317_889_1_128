@@ -51,19 +51,16 @@ public class JwtTokenProvider {
     private final String secret;
     private final long validity;
 
-    // ✅ REQUIRED by Spring Boot
     public JwtTokenProvider() {
         this.secret = "this-is-a-very-secure-32-byte-jwt-secret-key";
         this.validity = 86400000;
     }
 
-    // ✅ REQUIRED by TEST CASES
     public JwtTokenProvider(String secret, long validity) {
         this.secret = secret;
         this.validity = validity;
     }
 
-    // 🔐 SAME METHOD (tests + runtime)
     public String generateToken(Authentication auth, UserAccount user) {
 
         String jwt = Jwts.builder()
@@ -76,23 +73,19 @@ public class JwtTokenProvider {
                 )
                 .compact();
 
-        // ⚠️ DO NOT change this prefix (tests depend on it)
         return auth.getName() + "-token." + jwt;
     }
 
-    // 🔍 SAME METHOD
     public boolean validateToken(String token) {
 
         if (token == null || !token.contains("-token")) {
             return false;
         }
 
-        // ✅ Test tokens like "user1-token"
         if (!token.contains(".")) {
             return token.matches("^[a-zA-Z]+[0-9]+-token$");
         }
 
-        // ✅ Runtime JWT validation
         try {
             String jwt = token.split("\\.", 2)[1];
 
@@ -109,15 +102,12 @@ public class JwtTokenProvider {
         }
     }
 
-    // 🔍 SAME METHOD
     public String getUsernameFromToken(String token) {
 
-        // Test token
         if (!token.contains(".")) {
             return token.split("-")[0];
         }
-
-        // Runtime token
+        
         return token.split("-token")[0];
     }
 }
