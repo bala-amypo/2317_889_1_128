@@ -1,66 +1,66 @@
-package com.example.demo.security;
+// package com.example.demo.security;
 
-import java.util.Collection;
-import java.util.List;
+// import java.util.Collection;
+// import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+// import org.springframework.security.core.GrantedAuthority;
+// import org.springframework.security.core.authority.SimpleGrantedAuthority;
+// import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.demo.model.Guest;
+// import com.example.demo.model.Guest;
 
-public class CustomUserDetails implements UserDetails {
+// public class CustomUserDetails implements UserDetails {
 
-    private final Long id;
-    private final String email;
-    private final String password;
-    private final String role;
-    private final boolean active;
+//     private final Long id;
+//     private final String email;
+//     private final String password;
+//     private final String role;
+//     private final boolean active;
 
-    public CustomUserDetails(Guest guest) {
-        this.id = guest.getId();
-        this.email = guest.getEmail();
-        this.password = guest.getPassword();
-        this.role = guest.getRole();
-        this.active = guest.getActive() != null ? guest.getActive() : true;
-    }
+//     public CustomUserDetails(Guest guest) {
+//         this.id = guest.getId();
+//         this.email = guest.getEmail();
+//         this.password = guest.getPassword();
+//         this.role = guest.getRole();
+//         this.active = guest.getActive() != null ? guest.getActive() : true;
+//     }
 
-    public Long getId() {
-        return id;
-    }
+//     public Long getId() {
+//         return id;
+//     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
-    }
+//     @Override
+//     public Collection<? extends GrantedAuthority> getAuthorities() {
+//         return List.of(new SimpleGrantedAuthority(role));
+//     }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+//     @Override
+//     public String getPassword() {
+//         return password;
+//     }
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
+//     @Override
+//     public String getUsername() {
+//         return email;
+//     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+//     @Override
+//     public boolean isAccountNonExpired() {
+//         return true;
+//     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+//     @Override
+//     public boolean isAccountNonLocked() {
+//         return true;
+//     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+//     @Override
+//     public boolean isCredentialsNonExpired() {
+//         return true;
+//     }
 
-    @Override
-    public boolean isEnabled() {
-        return active;
-    }
-}
+//     @Override
+//     public boolean isEnabled() {
+//         return active;
+//     }
+// }
